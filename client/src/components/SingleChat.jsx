@@ -116,7 +116,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     selectedChatCompare = selectedChat
   }, [selectedChat])
 
-  console.log(notification)
   useEffect(() => {
     socket.on('message received', (newMessageReceived) => {
       if (
@@ -189,7 +188,11 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                     user={getSender(user.user, selectedChat.users)}
                   />
                   <Box minH="10px">
-                    {isTyping && <Text fontSize="15px" color={"#f9d094"}>Typing...</Text>}
+                    {isTyping && (
+                      <Text fontSize="15px" color={'#f9d094'}>
+                        Typing...
+                      </Text>
+                    )}
                   </Box>
                 </Box>
               </Text>
@@ -218,12 +221,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               </div>
             )}
           </Box>
-          <FormControl
-            onKeyDown={sendMessage}
-            isRequired
-            mt={{ base: '1', md: '3' }}
-            borderRadius="8px"
-          >
+          <FormControl onKeyDown={sendMessage} isRequired borderRadius="8px">
             <Input
               variant="outline"
               bg="#201d19"

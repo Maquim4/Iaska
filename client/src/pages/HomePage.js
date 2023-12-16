@@ -20,7 +20,7 @@ import { useNavigate } from "react-router-dom";
 const Homepage = () => {
   const navigate = useNavigate();
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("deLinkUser"));
+    const user = JSON.parse(localStorage.getItem("iaskaUser"));
     if (user) {
       navigate("/chats");
     }

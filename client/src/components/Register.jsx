@@ -22,7 +22,7 @@ const Register = () => {
     email: "",
     password: "",
     cf_password: "",
-    pic: "",
+    pic: "https://res.cloudinary.com/dfcaehp0b/image/upload/v1650481698/vd6bg6se3kbqutrd4cn1.png",
   };
   const [userData, setUserData] = useState(initialState);
   const [uploadingImage, setUploadingImage] = useState(false);
@@ -39,9 +39,9 @@ const Register = () => {
     if (pics.type === "image/png") {
       const data = new FormData();
       data.append("file", pics);
-      data.append("upload_preset", "DELinkChatApp");
-      data.append("cloud_name", "dfcaehp0b");
-      fetch("https://api.cloudinary.com/v1_1/dfcaehp0b/image/upload", {
+      data.append("upload_preset", "IaskaChatApp");
+      data.append("cloud_name", "dmfr9ef8c");
+      fetch("https://api.cloudinary.com/v1_1/dmfr9ef8c/image/upload", {
         method: "post",
         body: data,
       })
@@ -82,7 +82,7 @@ const Register = () => {
         config
       );
       toast.info("User Registered Successfully");
-      localStorage.setItem("deLinkUser", JSON.stringify(data));
+      localStorage.setItem("iaskaUser", JSON.stringify(data));
       setIsLoading(false);
       navigate("/chats");
     } catch (error) {

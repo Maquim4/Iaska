@@ -56,4 +56,15 @@ const fetchMessage = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { sendMessage, fetchMessage };
+const deleteMessage = asyncHandler(async (req, res) => {
+  const { messageId } = req.params;
+  try {
+    await Message.findByIdAndDelete(messageId);
+    res.status(204).end()
+  } catch (err) {
+    res.status(500);
+    throw new Error(err);
+  }
+});
+
+module.exports = { sendMessage, fetchMessage, deleteMessage };

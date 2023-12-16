@@ -1,7 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const generateToken = require("../token.js");
 const User = require("../models/user");
-const bcrypt = require("bcrypt");
+
 
 // @desc		Register new user
 // @route		/api/users
@@ -25,6 +25,7 @@ const registerUser = asyncHandler(async (req, res) => {
     email,
     password,
     image: pic,
+    isAdmin: false,
   });
   //   ? response
   if (newUser) {
@@ -98,4 +99,33 @@ const allUsers = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { registerUser, loginUser, allUsers };
+const fetchUsers = asyncHandler(async (req, res) => {
+  try {
+    const allUsers = await User.find({})
+    res.json(allUsers);
+  } catch (err) {
+    res.status(400);
+    throw new Error("Server could not process request");
+  }
+});
+
+const setMod = asyncHandler(async (req, res) => {
+  const { userId, state } = req.body
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      {
+        isMod: !state,
+      },
+      {
+        new: true,
+      }
+    )
+    res.status(200).json(updatedUser)
+  } catch (err) {
+    res.status(500)
+    throw new Error('Server could not work on the request')
+  }
+})
+
+module.exports = { registerUser, loginUser, allUsers, fetchUsers, setMod };

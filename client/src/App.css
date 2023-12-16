@@ -28,10 +28,10 @@
   width: 0;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1d19317e;
+  background: #fff;
 }
 ::-webkit-slider-thumb:hover {
-  background: #1d1931;
+  background: #fff;
 }
 .message {
   display: flex;

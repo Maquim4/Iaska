@@ -8,11 +8,12 @@ const ChatProvider = ({ children }) => {
   const [selectedChat, setSelectedChat] = useState();
   const [chats, setChats] = useState([]);
   const [notification, setNotification] = useState([]);
+  const [panel, setPanel] = useState("default");
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const userInfo = JSON.parse(localStorage.getItem("deLinkUser"));
+    const userInfo = JSON.parse(localStorage.getItem("iaskaUser"));
     setUser(userInfo);
     if (!userInfo) {
       navigate("/");
@@ -29,6 +30,8 @@ const ChatProvider = ({ children }) => {
         setChats,
         notification,
         setNotification,
+        panel,
+        setPanel,
       }}
     >
       {children}

@@ -50,7 +50,7 @@ const Login = () => {
         config
       );
       toast.success("User Logged In successfully");
-      localStorage.setItem("deLinkUser", JSON.stringify(data));
+      localStorage.setItem("iaskaUser", JSON.stringify(data));
       setLoading(false);
       navigate("/chats");
     } catch (err) {
